@@ -10,6 +10,7 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setTitle("ImageEditor");
+		config.setWindowedMode(584, 480);
 		System.out.println("Project made by: Benjamin Palmer");
 		new Lwjgl3Application(new ImageEditor(), config);
 	}

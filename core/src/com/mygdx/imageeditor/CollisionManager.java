@@ -18,4 +18,20 @@ public class CollisionManager {
 		}
 		return null;
 	}
+	
+	public IHoverable getHovered(Vector2 coordinates) {
+		IHoverable hoveredButton;
+		for(int i = 0; i < InputManager.Instance.IHoverables.size; i++) {
+			hoveredButton = InputManager.Instance.IHoverables.get(i);
+		}
+		return null;
+	}
+	
+public IClickable getClicked(Vector2 coordinates) {
+		IClickable clickedButton;
+		for(int i = 0; i < InputManager.Instance.IClickables.size; i++) {
+			clickedButton = InputManager.Instance.IClickables.get(i);
+		}
+		return null;
+	}
 }

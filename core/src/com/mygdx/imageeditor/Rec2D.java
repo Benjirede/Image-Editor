@@ -11,14 +11,14 @@ public class Rec2D {
 	public Vector2 Scale;
 	public Texture RecTexture;
 	private Pixmap _pixelMap;
-	private Color _recColor;
+	protected Color _recColor;
 	
 	public Rec2D(Vector2 scale, Vector2 position, Color color) {
 		Position = position;
 		Scale = scale;
 		_recColor = color;
-		
 		generateTexture();
+		ImageEditor.Instance.Rectangles.add(this);
 	}
 	
 	public void generateTexture() {

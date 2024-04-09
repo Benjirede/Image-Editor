@@ -47,8 +47,15 @@ public class Button extends Rec2D implements IClickable, IHoverable {
 	}
 
 	public void onClickUp(Vector2 mousePosition) {
+		if(_state == ButtonState.None) return;
 		_state = ButtonState.Hovered;
 		_recColor = new Color(_startColor.r/2f, _startColor.g/2f, _startColor.b/2f, 1);
 		generateTexture();		
+	}
+
+	@Override
+	public void onClickDragged(Vector2 mousePosition) {
+		// TODO Auto-generated method stub
+		
 	}
 }

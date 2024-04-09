@@ -16,13 +16,14 @@ public class EditWindow extends Rec2D implements IClickable {
 		DoodleTexture = new Texture(_doodleMap);
 		InputManager.Instance.Clickables.add(this);
 	}
-	@Override
-	public void onClickDown(Vector2 position) {
-		_doodleMap.drawPixel((int) (position.x-Position.x),(int) (Scale.y - position.y));
+	private void paintAtPosition(Vector2 worldPosition) {
+		_doodleMap.drawPixel((int) (worldPosition.x - Position.x),(int) (Scale.y - worldPosition.y));
 		DoodleTexture = new Texture(_doodleMap);
 	}
 	@Override
-	public void onClickUp(Vector2 mousePosition) {
-		
-	}
+	public void onClickDown(Vector2 position) { paintAtPosition(position); }
+	@Override
+	public void onClickUp(Vector2 mousePosition) {}
+	@Override
+	public void onClickDragged(Vector2 mousePosition) { paintAtPosition(mousePosition); }
 }

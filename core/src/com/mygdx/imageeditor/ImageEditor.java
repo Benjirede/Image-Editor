@@ -29,6 +29,7 @@ public class ImageEditor extends ApplicationAdapter {
 
 		Vector2 editWindowSize = new Vector2(500, ScreenSize.y - 40);
 		editWindow = new EditWindow(editWindowSize, new Vector2(ScreenSize.x - editWindowSize.x, 0), Color.GRAY);
+		Button yellow = new Button(new Vector2(50,50), new Vector2(0,0), Color.YELLOW);
 		CollisionManager collisionManager = new CollisionManager();
 	}
 

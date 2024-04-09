@@ -20,12 +20,13 @@ public class ImageEditor extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		ScreenSize = new Vector2(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		Instance = this;
 		InputManager.Instance = new InputManager();
 		Gdx.input.setInputProcessor(InputManager.Instance);
-		Instance = this;
 		Rectangles = new Array<Rec2D>();
+		batch = new SpriteBatch();
+		ScreenSize = new Vector2(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
 		Vector2 editWindowSize = new Vector2(500, ScreenSize.y - 40);
 		editWindow = new EditWindow(editWindowSize, new Vector2(ScreenSize.x - editWindowSize.x, 0), Color.GRAY);
 		CollisionManager collisionManager = new CollisionManager();

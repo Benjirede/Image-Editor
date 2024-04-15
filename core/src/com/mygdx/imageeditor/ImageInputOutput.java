@@ -35,11 +35,8 @@ public class ImageInputOutput {
 			r=fileIntData[i];
 			g=fileIntData[i+1];
 			b=fileIntData[i+2];
-			float rNorm = r/256f;
-			float gNorm = g/256f;
-			float bNorm = b/256f;
 			
-			pixels.setColor(rNorm, gNorm, bNorm, 1);
+			pixels.setColor(b/256f, g/256f, r/256f, 1);
 			pixels.drawPixel(x,y);
 			x++;
 			if(x>=width) {

@@ -26,6 +26,8 @@ public class EditWindow extends Rec2D implements IClickable {
 		_doodleMap.drawLine(startX, startY, endX, endY);
 		_doodleMap.drawLine(startX + 1, startY, endX + 1, endY);
 		_doodleMap.drawLine(startX - 1, startY, endX - 1, endY);
+		_doodleMap.drawLine(startX, startY+1, endX, endY+1);
+		_doodleMap.drawLine(startX, startY-1, endX, endY-1);
 		_previousPaintPosition = paintPosition;
 		DoodleTexture = new Texture(_doodleMap);
 	}

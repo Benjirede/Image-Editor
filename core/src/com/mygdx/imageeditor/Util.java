@@ -1,5 +1,8 @@
 package com.mygdx.imageeditor;
 
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.math.Vector2;
+
 public class Util {
 	public static int bytesToInt(byte[] bytes) {
 		int[] ints = unsignBytes(bytes);
@@ -22,4 +25,30 @@ public class Util {
 		}
 		return ints;
 	}
+	public static byte[] intToSignedBytes(int value) {
+		byte[] result = new byte[4];
+		result[0] = (byte) (value >> 24);
+		result[1] = (byte) ((value << 8) >> 24);
+		result[2] = (byte) ((value << 16) >> 24);
+		result[3] = (byte) ((value << 24) >> 24);
+		return result;
+	}
+	public static Pixmap scalePixmap(Pixmap source, Vector2 desiredSize) {
+		int tempColor;
+		Pixmap target = new Pixmap((int) desiredSize.x, (int) desiredSize.y, Pixmap.Format.RGBA8888);
+		float targetWidth = target.getWidth();
+		float targetHeight = target.getHeight();
+		float sourceWidth = source.getWidth();
+		float sourceHeight = source.getHeight();
+		for(int x = 0; x < target.getWidth(); x++) {
+			for(int y = 0; y < target.getHeight(); y++) {
+				int newX = (Math.round(x/targetWidth*sourceWidth));
+				int newY = (Math.round(y/targetHeight*sourceHeight));
+				tempColor = source.getPixel(newX, newY);
+				target.drawPixel(x, y, tempColor);
+			}
+		}
+		return target;
+	}
+
 }

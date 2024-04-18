@@ -20,7 +20,7 @@ public class InputManager implements InputProcessor {
 
 	public boolean keyDown(int keycode) {
 		if(_controlPressed && keycode == Keys.S) {
-			try {ImageInputOutput.Instance.saveImage("C:\\Users\\isaac\\Pictures\\test.bmp");}
+			try {ImageInputOutput.Instance.saveImage("C:\\Users\\XcBea\\OneDrive\\Desktop\\test.bmp");}
 			catch (IOException e) {e.printStackTrace();}
 		}
 		if(keycode == Keys.CONTROL_LEFT) _controlPressed = true;

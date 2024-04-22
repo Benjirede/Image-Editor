@@ -1,4 +1,4 @@
-package com.mygdx.imageeditor;
+package com.mygdx.utility;
 
 import com.badlogic.gdx.math.Vector2;
 

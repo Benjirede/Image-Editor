@@ -1,10 +1,15 @@
-package com.mygdx.imageeditor;
+package com.mygdx.buttons;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.imageeditor.Rec2D;
+import com.mygdx.utility.IClickable;
+import com.mygdx.utility.IHoverable;
+import com.mygdx.utility.InputManager;
 
 public class Button extends Rec2D implements IClickable, IHoverable {
-	private Color _startColor;
+	protected Color _startColor;
+	public String ButtonText;
 	public enum ButtonState {Clicked, Hovered, None};
 	private ButtonState _state;
 
@@ -41,6 +46,7 @@ public class Button extends Rec2D implements IClickable, IHoverable {
 	}
 
 	public void onClickDown(Vector2 position) {
+		if(_state == ButtonState.Clicked) return;
 		_state = ButtonState.Clicked;
 		_recColor = new Color(_startColor.r/4f, _startColor.g/4f, _startColor.b/4f, 1);
 		generateTexture();		

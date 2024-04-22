@@ -1,4 +1,4 @@
-package com.mygdx.imageeditor;
+package com.mygdx.utility;
 
 import java.io.IOException;
 
@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.imageeditor.ImageEditor;
 
 public class InputManager implements InputProcessor {
 	public static InputManager Instance;
@@ -19,8 +20,11 @@ public class InputManager implements InputProcessor {
 	}
 
 	public boolean keyDown(int keycode) {
+		if(ImageInputOutput.Instance.ImageFolderLocation == null) {
+			return false;
+		}
 		if(_controlPressed && keycode == Keys.S) {
-			try {ImageInputOutput.Instance.saveImage("C:\\Users\\XcBea\\OneDrive\\Desktop\\test.bmp");}
+			try {ImageInputOutput.Instance.saveImage(ImageInputOutput.Instance.ImageFolderLocation+"\\output.bmp");}
 			catch (IOException e) {e.printStackTrace();}
 		}
 		if(keycode == Keys.CONTROL_LEFT) _controlPressed = true;
@@ -34,14 +38,13 @@ public class InputManager implements InputProcessor {
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		Vector2 clickPosition = new Vector2(screenX, ImageEditor.Instance.ScreenSize.y-screenY);
 		IClickable collision = CollisionManager.Instance.getClicked(clickPosition);
+		_currentlyClicked = collision;
 		if(_currentlyClicked!=null) {
 			_currentlyClicked.onClickDown(clickPosition);
 		}
-		_currentlyClicked = collision;
 		return true;
 	}
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		//Button collision = CollisionManager.Instance.getCollision(new Vector2(screenX, ImageEditor.Instance.ScreenSize.y - screenY));
 		if(_currentlyClicked!=null) {
 			_currentlyClicked.onClickUp(new Vector2(screenX-ImageEditor.Instance.editWindow.Position.x, ImageEditor.Instance.ScreenSize.y-screenY));
 		}
@@ -56,8 +59,9 @@ public class InputManager implements InputProcessor {
 	}
 	public boolean mouseMoved(int screenX, int screenY) {
 		IHoverable collision = CollisionManager.Instance.getHovered(new Vector2(screenX, ImageEditor.Instance.ScreenSize.y - screenY));
-		if(collision == null && _currentlyHovered != null) { _currentlyHovered.onHoverExit(); }
+		if(collision != _currentlyHovered && _currentlyHovered != null) { _currentlyHovered.onHoverExit(); }
 		if(collision!=null) { collision.onHovered(); }
+		if(collision != _currentlyHovered) _currentlyClicked = null;
 		_currentlyHovered = collision;
 		return true;
 	}
